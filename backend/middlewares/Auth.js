@@ -18,3 +18,15 @@ export const requireSignIn = async (req, res, next) => {
 		res.status(401).json({ Error: error.message });
 	}
 };
+
+export const metaLogin = async (req, res, next) => {
+	try {
+		const token = req.headers.authorization;
+		console.log('token: ', token);
+
+		req.token = token;
+		next();
+	} catch (error) {
+		res.status(401).json({ Error: error.message });
+	}
+};
